@@ -36,14 +36,47 @@ def is_palindrome(s):
     """
     # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
     # 힌트: isalnum() 메서드와 lower() 메서드 사용
-    pass
+
+    # new = ""
+    # for one_s in s:
+    #     if one_s.isalnum() == True:
+    #         new = new + one_s.lower()
+
+    # list comprehension
+    # 표현식 for 변수 in 반복대상
+    # 리스트는 문자열로 바꿔줘야함 "".join()
+    new = "".join([one_s.lower() for one_s in s if one_s.isalnum()])
+    
     
     # TODO: 정제된 문자열이 회문인지 확인하세요
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
-    pass
-    
-    #return False
+
+    # 1
+    rev_s = new[::-1]
+
+    # if rev_s == new:
+    #     return True
+    # return False
+
+    # return rev_s == new
+
+
+    # 2
+    right = len(new) - 1
+    left = 0
+
+    while left < right: 
+        if new[left] == new[right]:
+            left += 1
+            right -= 1
+        else:
+            return False
+    return True
+
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
