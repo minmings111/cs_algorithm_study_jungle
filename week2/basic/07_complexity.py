@@ -22,6 +22,7 @@
 - 방법3: 해시 집합 사용 (O(n) 시간, O(n) 공간)
 """
 
+
 def find_duplicates_brute_force(nums):
     """
     방법1: 이중 반복문 사용
@@ -34,7 +35,11 @@ def find_duplicates_brute_force(nums):
     # TODO: 이중 반복문으로 중복 찾기
     ## i번째 원소와 i+1 이후의 모든 원소를 비교
     ## 같은 원소를 찾으면 duplicates에 추가 (중복 추가 방지 필요)
-    pass
+    for i in range(n):
+        for j in range(i+1, n):
+            if nums[i] == nums[j]:
+                if nums[j] not in duplicates:
+                    duplicates.append(nums[j])
     
     return duplicates
 
@@ -48,13 +53,15 @@ def find_duplicates_sorting(nums):
         return []
     
     # TODO: 배열을 정렬하세요 (nums.sort() 사용)
-    pass
+    nums.sort()
     
     duplicates = []
     
     # TODO: 인접한 원소를 비교하여 중복 찾기
     # i와 i+1 원소가 같고, duplicates에 없으면 추가
-    pass
+    for i in range(len(nums)-1):
+        if nums[i] == nums[i+1] and nums[i+1] not in duplicates:
+            duplicates.append(nums[i+1])
     
     return duplicates
 
@@ -67,10 +74,15 @@ def find_duplicates_hash(nums):
     seen = set()
     duplicates = set()
     
-    # TODO: 각 원소를 순회하면서
+    # TODO: 각 원소를 순회하면서  <- index를 사용할 필요가 없음
     ## 이미 seen에 있으면 duplicates에 추가
     ## 없으면 seen에 추가
     pass
+    for num in nums:
+        if num not in seen:
+            seen.add(num)
+        else:
+            duplicates.add(num)
     
     return list(duplicates)
 
