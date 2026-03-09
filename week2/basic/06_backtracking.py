@@ -22,44 +22,44 @@
 - 현재 숫자보다 큰 숫자만 선택하여 중복 방지
 """
 
-# def combinations(n, k):
-#     """
-#     1부터 n까지 숫자 중 k개를 선택하는 모든 조합 찾기
+def combinations(n, k):
+    """
+    1부터 n까지 숫자 중 k개를 선택하는 모든 조합 찾기
     
-#     Args:
-#         n: 전체 숫자 개수
-#         k: 선택할 개수
+    Args:
+        n: 전체 숫자 개수
+        k: 선택할 개수
     
-#     Returns:
-#         모든 조합의 리스트
-#     """
-#     result = []
+    Returns:
+        모든 조합의 리스트
+    """
+    result = []
     
-#     def backtrack(start, current_combination):
-#         """
-#         백트랙킹 헬퍼 함수
+    def backtrack(start, current_combination):
+        """
+        백트랙킹 헬퍼 함수
         
-#         Args:
-#             start: 탐색을 시작할 숫자
-#             current_combination: 현재까지 선택한 숫자들
-#         """
-#         # TODO: base case - k개를 모두 선택했으면 결과에 추가
-#         if len(result) == k:
-#             result.append(current_combination)
-#             return
+        Args:
+            start: 탐색을 시작할 숫자
+            current_combination: 현재까지 선택한 숫자들
+        """
+        # TODO: base case - k개를 모두 선택했으면 결과에 추가
+        if len(current_combination) == k:
+            result.append(current_combination[:]) # 얕은 복사 해야 함!
+            return
         
-#         # TODO: start부터 n까지 숫자를 하나씩 시도
-#         ## TODO: 백트랙킹 3단계 구현
-#         ## 1. 선택(Choose)
-#         ## 2. 탐색(Explore)
-#         ## 3. 취소(Unchoose)
-#         for i in range(start, n+1):
-#             current_combination.append(i)
-#             backtrack(i + 1, current_combination)
-#             current_combination.pop()
+        # TODO: start부터 n까지 숫자를 하나씩 시도
+        ## TODO: 백트랙킹 3단계 구현
+        ## 1. 선택(Choose)
+        ## 2. 탐색(Explore)
+        ## 3. 취소(Unchoose)
+        for i in range(start, n+1):
+            current_combination.append(i)
+            backtrack(i + 1, current_combination)
+            current_combination.pop()
     
-#     backtrack(1, [])
-#     return result
+    backtrack(1, [])
+    return result
 
 
 def combinations(n, k):
@@ -67,7 +67,7 @@ def combinations(n, k):
 
     def backtrack(start, current_combination):
         if len(current_combination) == k:
-            result.append(current_combination)
+            result.append(current_combination[:])
             return
         
         for i in range(start, n + 1):
