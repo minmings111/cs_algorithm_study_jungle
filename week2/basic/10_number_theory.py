@@ -127,11 +127,31 @@ def is_prime(n):
 
     if n < 2:
         return False
-    
-    for i in range(2, int(sqrt(n)) +1):
+
+    if n == 2:
+        return True
+
+    if n % 2 == 0:
+        return False
+
+    for i in range(3, int(sqrt(n)) + 1, 2):
         if n % i == 0:
             return False
+
     return True
+
+    # 비효율적인 코드인듯........ 
+    # 짝수는 2를 제외하고 소수가 없는데도 검토하는 코드임.
+    # if n < 2:
+    #     return False
+    
+    # for i in range(2, int(sqrt(n)) +1):
+    #     if n % i == 0:
+    #         return False
+    # return True
+
+
+
 
 
 
