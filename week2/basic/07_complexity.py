@@ -58,7 +58,7 @@ def find_duplicates_sorting(nums):
     duplicates = []
     
     # TODO: 인접한 원소를 비교하여 중복 찾기
-    # i와 i+1 원소가 같고, duplicates에 없으면 추가
+    # i와 i+1 원소가 같고, duplicates에 없으면 추가 
     for i in range(len(nums)-1):
         if nums[i] == nums[i+1] and nums[i+1] not in duplicates:
             duplicates.append(nums[i+1])
