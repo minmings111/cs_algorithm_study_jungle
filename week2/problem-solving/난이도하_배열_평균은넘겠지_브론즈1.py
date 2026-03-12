@@ -13,13 +13,13 @@ def tell_the_truth(case):
     n = case[0]
     scores = case[1:]
     avg = sum(scores)/n
-    count = 0
+    count_n = 0
 
     for i in range(n):
         if scores[i] > avg:
-            count += 1
+            count_n += 1
     
-    per = round(count/n*100, 3)
+    per = round(count_n/n*100, 3)
     print(f"{per}%")
 
 for i in range(0,case_count):
