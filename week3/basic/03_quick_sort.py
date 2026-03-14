@@ -22,6 +22,7 @@
 - 재귀적으로 왼쪽과 오른쪽 부분 정렬
 """
 
+# (arr, 0, len(arr))
 def partition(arr, low, high):
     """
     배열을 피벗 기준으로 분할하는 함수
@@ -35,21 +36,28 @@ def partition(arr, low, high):
         피벗의 최종 위치 인덱스
     """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
-    pass
+    pivot_num = arr[high]
     
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
-    pass
-    
+    # “작은 값 구역의 맨 끝 칸 // 처음 i는 시작 인덱스의 -1 위치 // 그래야 작은수그룹에 아무것도 없이 시작함.
+    i = low-1 
+
     # TODO: low부터 high-1까지 순회하면서
-    ## 현재 원소가 피벗보다 작거나 같으면:
-    ##   1. i를 1 증가
-    ##   2. arr[i]와 arr[j]를 교환
-    pass
-    
+    # 어차피 low, high로 받는 값이 인덱스 좌표라 바로 range() 써도 됨 
+    # range()가 알아서 high에 -1 계산해줌..!
+    for j in range(low,high):
+    ## 현재 돌고 있는 인덱스 위치의 값이 피벗보다 작거나 같으면:
+        if arr[j] <= pivot_num:
+            # 인덱스 범위 에러(만약 주어진 low가 0이라면 i는 -1)를 안 보려면 먼저 더해줘야 함
+            # 피벗보다 작은 j의 수가 작은수그룹에 위치할 때마다 위치를 i가 기록
+            i += 1 
+            arr[i], arr[j] = arr[j], arr[i]
+
     # TODO: 피벗을 올바른 위치(i+1)에 배치
-    pass
-    
-    return i + 1
+    arr[high], arr[i+1] = arr[i+1], arr[high]
+    return i+1
+
+
 
 def quick_sort_helper(arr, low, high):
     """
@@ -61,10 +69,24 @@ def quick_sort_helper(arr, low, high):
         high: 끝 인덱스
     """
     # TODO: base case - low가 high보다 작을 때만 정렬
+    # low와 high는 인덱스이기 때문에, 이 사이에 거리가 존재한다면 아직 정렬한게 남은거임
+    # 즉, low가 high보다 작거나 같을 때에 분할이 끝나야 함.
+    if low >= high:
+        return
+    
     ## 분할하여 피벗 인덱스 얻기
+    p_value = partition(arr, low, high)
+
     ## 피벗 왼쪽 부분 재귀 정렬
+    quick_sort_helper(arr, low, p_value -1)
     ## 피벗 오른쪽 부분 재귀 정렬
-    pass 
+    quick_sort_helper(arr, p_value + 1, high)
+
+    return
+
+
+        
+
     
 
 def quick_sort(arr):
@@ -77,6 +99,7 @@ def quick_sort(arr):
     Returns:
         정렬된 배열
     """
+    
     quick_sort_helper(arr, 0, len(arr) - 1)
     return arr
 
