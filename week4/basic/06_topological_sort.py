@@ -78,7 +78,7 @@ def topological_sort_2(ver, edges):
 
     for u, v in edges:
         adj[u].append(v)
-        indg[u] += 1
+        indg[v] += 1
 
     que = deque([v for v in ver if indg[v] == 0])
     result = []
