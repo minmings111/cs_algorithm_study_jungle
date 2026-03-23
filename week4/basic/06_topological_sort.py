@@ -72,6 +72,29 @@ def topological_sort(vertices, edges):
 
     return result
 
+def topological_sort_2(ver, edges):
+    adj = {v:[] for v in ver}
+    indg = {v:0 for v in ver}
+
+    for u, v in edges:
+        adj[u].append(v)
+        indg[u] += 1
+
+    que = deque([v for v in ver if indg[v] == 0])
+    result = []
+
+    while que:
+        curr = que.popleft()
+        result.append(curr)
+
+        for neib in adj[curr]:
+            indg[neib] -= 1
+            if indg[neib] == 0:
+                que.append(neib)
+        
+    return result
+
+
 # 테스트 케이스
 if __name__ == "__main__":
     # 과목 선수과목 예제
